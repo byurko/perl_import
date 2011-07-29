@@ -15,6 +15,8 @@ use DBI;
 
 my $debug = 0;	# created this flag to toggle conditional debug printing
 
+check_db();
+
 my $parser = XML::LibXML->new();
 my $file = 'feed.xml';	# I removed the command line argument designating the source file.
 my $tree = $parser->parse_file($file);
@@ -127,6 +129,70 @@ foreach my $item (@items) {
 
 $dbh->disconnect();
 
+sub check_db {
+	# This is a last minute subroutine to check for and possibly create the required database for this project
+	# from within this source file. The idea is to individually check for the health of all three tables, and
+	# if any of them are not found, we will run a query to create them.
+
+	# open a connection to the local SQLite DB
+	# the schema has been defined using an external call to sqlite3 importing schema.sql
+	my $dbh = DBI->connect("dbi:SQLite:dbname=import.db","","") or die "$DBI::errstr\n";
+
+	my $table_found;
+	my $sth;
+	my $rc;
+
+	$sth = $dbh->prepare("SELECT COUNT(*) FROM sqlite_master WHERE type='table' AND name='series';") or die $dbh->errstr;
+	$sth->execute() or die $sth->errstr;
+	$rc = $sth->bind_col(1, \$table_found);
+	while ($sth->fetch) {
+		if (!$table_found) {
+			$dbh->do("CREATE TABLE series (
+				series_id INTEGER PRIMARY KEY,
+				series_code TEXT,
+				series_name TEXT,
+				CONSTRAINT unique_series UNIQUE (series_code, series_name) ON CONFLICT IGNORE
+				);") or die $dbh->errstr;
+			if ($dbh->err()) { die "$DBI::errstr\n"; }
+		}
+	}
+
+	$sth = $dbh->prepare("SELECT COUNT(*) FROM sqlite_master WHERE type='table' AND name='networks';") or die $dbh->errstr;
+	$sth->execute() or die $sth->errstr;
+	$rc = $sth->bind_col(1, \$table_found);
+	while ($sth->fetch) {
+		if (!$table_found) {
+			$dbh->do("CREATE TABLE networks (
+				network_id INTEGER PRIMARY KEY,
+				network_name TEXT UNIQUE ON CONFLICT IGNORE
+				);") or die $dbh->errstr;
+			if ($dbh->err()) { die "$DBI::errstr\n"; }
+		}
+	}
+
+	$sth = $dbh->prepare("SELECT COUNT(*) FROM sqlite_master WHERE type='table' AND name='episodes';") or die $dbh->errstr;
+	$sth->execute() or die $sth->errstr;
+	$rc = $sth->bind_col(1, \$table_found);
+	while ($sth->fetch) {
+		if (!$table_found) {
+			$dbh->do("CREATE TABLE episodes (
+				episode_id INTEGER PRIMARY KEY,
+				series_id INTEGER,
+				network_id INTEGER,
+				show_title TEXT,
+				episode INTEGER,
+				season INTEGER,
+				synopsis TEXT,
+				pub_date TEXT,
+				CONSTRAINT unique_episodes UNIQUE (series_id, network_id, show_title, episode, season) ON CONFLICT IGNORE
+				);") or die $dbh->errstr;
+			if ($dbh->err()) { die "$DBI::errstr\n"; }
+		}
+	}
+
+	$dbh->disconnect();
+	return;
+}
 
 sub debug_print_node {
 	# This subroutine expects one object of type $node to be passed in.
