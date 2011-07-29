@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+    <title>TV Test Feed</title>
+    <pubDate>2011-07-25T18:04:00Z</pubDate>
+    <item>
+        <title>The End</title>
+        <series id="ser-1">Lost</series>
+        <episode num="17" />
+        <season num="6" />
+        <synopsis>In the episode, "Man in Black" (Terry O'Quinn) begins to execute his plan to destroy the island as Jack Shephard (Matthew Fox) tries to stop him once and for all. Meanwhile, the true nature of the flash-sideways[9] is revealed.</synopsis>
+        <network id="net-1">ABC</network>
+    </item>
+    <item>
+        <title>Chuck Versus the Living Dead</title>
+        <series id="ser-2">Chuck</series>
+        <episode num="17" />
+        <season num="3" />
+        <network id="net-1">NBC</network>
+    </item>
+    <item>
+        <title>The Day We Died</title>
+        <series id="ser-3">Fringe</series>
+        <episode num="22" />
+        <network id="net-1">FOX</network>
+        <season num="3" />
+        <synopsis>The finale follows the aftermath of Peter entering and activating the doomsday device. He finds himself in a world 15 years in the future; though the device destroyed the parallel universe, our world is regardless gradually disintegrating.</synopsis>
+    </item>
+    <item>
+        <title>What They Died For</title>
+        <series id="ser-1">Lost</series>
+        <episode num="16" />
+        <season num="6" />
+        <synopsis>In the flash-sideways timeline, Desmond Hume (Henry Ian Cusick) continues his attempt to gather all the passengers of Oceanic Airlines Flight 815. In 2007, The Man in Black (Terry O'Quinn) devises a new strategy. Jack Shephard (Matthew Fox) takes the role as leader of the island while he and his group search for Desmond.</synopsis>
+        <network id="net-1">ABC</network>
+    </item>
+    <item>
+        <title>Flashes Before Your Eyes</title>
+        <series id="ser-1">Lost</series>
+        <episode num="8" />
+        <season num="3" />
+        <synopsis>In this episode, Hugo "Hurley" Reyes (Jorge Garcia) and Charlie Pace (Dominic Monaghan) conclude that Desmond Hume (Henry Ian Cusick) can see into the future after he saves Claire Littleton (Emilie de Ravin) from drowning. It is revealed that after the hatch imploded, Desmond traveled back to London and relived his past before coming back to the island. Desmond also reveals to Charlie that Charlie is destined to die.</synopsis>
+        <network id="net-1">ABC</network>
+    </item>
+    <item>
+        <title>There's More Than One of Everything</title>
+        <series id="ser-3">Fringe</series>
+        <episode num="20" />
+        <season num="1" />
+        <synopsis>The finale followed David Robert Jones' (Jared Harris) attempts to open a doorway to the parallel universe, while the Fringe team tries to stop him.</synopsis>
+        <network id="net-1">FOX</network>
+    </item>
+</root>
