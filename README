@@ -1,0 +1,22 @@
+Project: perl_import
+Author: Brian Yurko
+
+The purpose of this project is to:
+
+parse file.xml using Perl and store the data in a local SQLite database
+ensure that duplicate values are not created upon importing this file subsequent times
+create a web application to display the results stored in the database
+
+There are several areas of this project where I could spend additional time solving problems that are above and beyond the manditory scope of the request.
+Unfortunately I have not had extra time to invistigate these options. For example, I could have composed Perl code which was more object oriented.
+I could have written better error handling methods for a mal-formed or missing XML file.
+I plan to write a function that will create the required database if it is missing.
+
+Creating and initializing the SQLite database.
+I was thinking that we would check for and if not existing, create the database from DDL within the Perl environment.
+Since I have not been using DBI or DBD very often, I will end up predefining the schema for the DB and importing it via 'sqlite3 import.db' .read schema.sql
+I have not created adequate foreign key constraints between the three tables.
+I have not created indexes for the tables.
+I have not created all of the possible NOT NULL constraints
+
+
