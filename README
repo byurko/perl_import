@@ -10,6 +10,22 @@ create a web application to display the results stored in the database
 I would liked to have spent additional time making this project more polished and anticipating error conditions that I did not, but I was challenged by the basic requirements as I have not worked with the requisite technologies recently.
 For example, I could have composed Perl code which was more object oriented. I could have written better error handling methods for a mal-formed or missing XML file. I could have written a function that would create the required database if it is missing.
 
+Usage:
+------
+[creating the database]
+It is no longer required to create the database in advance, outside of the import program.
+If "import.pl" is run without a local database present, it will create one.
+
+[parsing and importing the feed]
+$ perl import.pl
+The import.pl program expects files.xml to be present in the current directory, rather than specified as a command line argument.
+
+[displaying the results]
+Move display.pl to an appropriate web root with proper cgi permissions (sometimes this requires setting an executable bit)
+Assure the web server is configured to support this file extension type and execution mode.
+In my case, it was installed to http://localhost/cgi-bin/display.pl
+Browse to the page
+
 Creating and initializing the SQLite database.
 ----------------------------------------------
 I was thinking that we would check for and if not existing, create the database from DDL within the Perl environment.
